@@ -8,44 +8,44 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/iniciar_sesi_n"
-        android:textSize="20sp"
-        android:fontFamily="@font/mallkis_demo"
+        android:fontFamily="@font/poppins_extrabold"
+        android:text="@string/brainlist"
+        android:textSize="40sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.174" />
+        app:layout_constraintVertical_bias="0.068" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/usuario"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/iniciar_sesi_n"
         android:textSize="20sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.311"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <EditText
-        android:id="@+id/eTuser"
+        android:id="@+id/eTpass"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:autofillHints="username"
+        android:autofillHints="password"
         android:background="@drawable/textview"
+        android:contentDescription=""
+        android:inputType="textPassword"
         android:maxLines="1"
         android:singleLine="true"
-        android:inputType="text"
-        android:contentDescription="@string/empty"
         android:textColor="@color/black"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,15 +53,14 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311"
-
-        tools:ignore="labelFor"
-        />
+        app:layout_constraintVertical_bias="0.515"
+        tools:ignore="labelFor" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
         android:text="@string/contrase_a"
         android:textSize="20sp"
 
@@ -70,28 +69,43 @@
         app:layout_constraintHorizontal_bias="0.346"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.394" />
+        app:layout_constraintVertical_bias="0.441" />
 
     <EditText
-        android:id="@+id/eTpass"
+        android:id="@+id/eTuser"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:autofillHints="password"
+        android:autofillHints="username"
         android:background="@drawable/textview"
+        android:contentDescription="@string/empty"
+        android:inputType="text"
         android:maxLines="1"
         android:singleLine="true"
-        android:inputType="textPassword"
-        android:contentDescription=""
         android:textColor="@color/black"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.467"
+        app:layout_constraintVertical_bias="0.321"
 
-        tools:ignore="labelFor"/>
+        tools:ignore="labelFor" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/usuario"
+        android:textSize="20sp"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.253" />
 
     <Button
         android:id="@+id/btnLogin"
@@ -103,24 +117,25 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.581" />
+        app:layout_constraintVertical_bias="0.668" />
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="185dp"
         android:layout_height="50dp"
-        android:background="@drawable/button_rounded"
+        android:background="@drawable/button_color"
         android:text="@string/registrarse"
         android:textColor="@color/white"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679" />
+        app:layout_constraintVertical_bias="0.767" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

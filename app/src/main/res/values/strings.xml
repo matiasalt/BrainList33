@@ -8,4 +8,8 @@
     <string name="logo">logo</string>
     <string name="empty" />
     <string name="registrarse">Registrarse</string>
+    <string name="brainlist">BrainList</string>
+    <string name="reg_strate">regístrate</string>
+    <string name="reg_strate_aqu">regístrate aquí</string>
+    <string name="email">Email:</string>
 </resources>
