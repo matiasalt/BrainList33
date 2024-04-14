@@ -12,4 +12,7 @@
     <string name="reg_strate">regístrate</string>
     <string name="reg_strate_aqu">regístrate aquí</string>
     <string name="email">Email:</string>
+    <string name="boton_casa">BOTON_CASA</string>
+    <string name="boton_fiesta">BOTON_FIESTA</string>
+    <string name="trabajo">TRABAJO</string>
 </resources>

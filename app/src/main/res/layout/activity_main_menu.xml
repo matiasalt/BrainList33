@@ -22,4 +22,49 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.068" />
 
+    <ImageView
+        android:id="@+id/btnimg1"
+        android:layout_width="314dp"
+        android:layout_height="168dp"
+        android:background="@drawable/btn_img_casa"
+        android:onClick="btn_casa"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.278"
+        android:contentDescription="@string/boton_casa" />
+
+    <ImageView
+        android:id="@+id/btnimg2"
+        android:layout_width="314dp"
+        android:layout_height="168dp"
+        android:background="@drawable/btn_img_fiesta"
+        android:onClick="btn_fiesta"
+
+        android:contentDescription="@string/boton_fiesta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.616" />
+
+    <ImageView
+        android:id="@+id/btnimg2"
+        android:layout_width="314dp"
+        android:layout_height="168dp"
+        android:background="@drawable/btn_img_trabajo"
+        android:contentDescription="@string/trabajo"
+
+        android:onClick="btn_trabajo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.939" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
