@@ -12,4 +12,13 @@
     <string name="reg_strate">regístrate</string>
     <string name="reg_strate_aqu">regístrate aquí</string>
     <string name="email">Email:</string>
+    <string name="iconlist">IconList</string>
+    <string name="compras_hogar">Compras Hogar</string>
+    <string name="add_btn">add_btn</string>
+    <string name="remove_btn">remove_btn</string>
+    <string name="nombre_de_la_lista">Nombre de la lista:</string>
+    <string name="agregar_nueva_lista">Agregar nueva lista</string>
+    <string name="nombre">Nombre</string>
+    <string name="namelist">nameList</string>
+    <string name="scrollbtn">scrollbtn</string>
 </resources>

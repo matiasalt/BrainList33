@@ -24,23 +24,30 @@ class   MainActivity : AppCompatActivity() {
 
         userDBHelper = DBHelper(this)
 
-        val buttonlog=findViewById<Button>(R.id.btnLogin)
-        buttonlog.setOnClickListener{
+        val buttonlog = findViewById<Button>(R.id.btnLogin)
+        buttonlog.setOnClickListener {
             val name = findViewById<EditText>(R.id.eTuser).getText().toString()
             val password = findViewById<EditText>(R.id.eTpass).getText().toString()
 
-            val userExists = userDBHelper.readUser(name, password)
-            if(userExists){
-                val intent= Intent(this,MainMenu::class.java)
-                startActivity(intent)
+            if(name=="admin"){
+                if(password=="admin"){
+                    userDBHelper.dropTable()
+                    Toast.makeText(this, "Base de datos borrada", Toast.LENGTH_SHORT).show()
+                }
             }else{
-                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_LONG).show()
+                val userExists = userDBHelper.readUser(name, password)
+                if (userExists) {
+                    val intent = Intent(this, MainMenu::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
-        val buttonreg=findViewById<Button>(R.id.btnRegister)
-        buttonreg.setOnClickListener{
-            val intent=Intent(this,Registrar::class.java)
+        val buttonreg = findViewById<Button>(R.id.btnRegister)
+        buttonreg.setOnClickListener {
+            val intent = Intent(this, Registrar::class.java)
             startActivity(intent)
         }
     }

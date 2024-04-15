@@ -14,14 +14,12 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null,
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTableQuerry= "CREATE TABLE userinfo (username TEXT, password TEXT, email TEXT)"
+        val createTableQuerry = "CREATE TABLE userinfo (_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT DEFAULT 'admin', password TEXT DEFAULT 'admin', email TEXT DEFAULT 'admin@gmail.com')"
         db?.execSQL(createTableQuerry)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        val dropTableQuerry= "DROP TABLE IF EXISTS userinfo"
-        db?.execSQL(dropTableQuerry)
-        onCreate(db)
+
     }
 
     fun addNewUser(username: String, password: String, email: String) {
@@ -31,7 +29,7 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null,
             put("email", email)
         }
 
-        val db = this.writableDatabase
+        val db = writableDatabase
         db.insert("userinfo", null, datos)
         db.close()
     }
@@ -46,5 +44,27 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null,
         cursor.close()
         return userExists
     }
+
+    fun userAlreadyExists(email: String):Boolean{
+        val db = writableDatabase
+        val cursor = db.rawQuery("SELECT * FROM userinfo WHERE email= $email", null)
+        println(cursor.moveToFirst())
+        return if (cursor.moveToFirst()){
+            cursor.close()
+            true
+        }else{
+            cursor.close()
+            false
+        }
+    }
+
+    fun dropTable(){
+        val db = writableDatabase
+        val dropTableQuerry= "DROP TABLE IF EXISTS userinfo"
+        db?.execSQL(dropTableQuerry)
+        onCreate(db)
+    }
 }
+
+
 

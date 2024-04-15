@@ -31,12 +31,12 @@ class Registrar : AppCompatActivity() {
             val password = findViewById<EditText>(R.id.eTpassRegistro1).getText().toString()
             val email = findViewById<EditText>(R.id.eTmailRegitro3).getText().toString()
 
-            if(name.isNotBlank() or password.isNotBlank() or email.isNotBlank()){
-                userDBHelper.addNewUser(name, password, email)
-                val intent= Intent(this,MainActivity::class.java)
-                startActivity(intent)
+            if(name.isNotBlank() and password.isNotBlank() and email.isNotBlank()){
+                    userDBHelper.addNewUser(name, password, email)
+                    val intent= Intent(this,MainActivity::class.java)
+                    startActivity(intent)
             }else{
-                Toast.makeText(this, "Completar todos los campos", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Completar todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
     }
