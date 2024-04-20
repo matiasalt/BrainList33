@@ -1,6 +1,7 @@
 package com.matiasd.brainlist3
 
 
+import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,17 +10,22 @@ import android.widget.AbsListView
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
+
 class AddList : AppCompatActivity() {
+    private var idSeleccionado = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_add_list)
@@ -56,30 +62,45 @@ class AddList : AppCompatActivity() {
         layoutParams.topToBottom = R.id.tVIconName
         spinner.layoutParams = layoutParams
 
-        var indiceSeleccionado: Int = -1
-
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                indiceSeleccionado = position
+                val idImagen = when (position) {
+                    0 -> R.drawable.casa_icon
+                    1 -> R.drawable.fiesta_icon
+                    2 -> R.drawable.trabajo_icon
+
+                    else -> R.drawable.casa_icon
+                }
+                idSeleccionado = idImagen
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
 
-        if (indiceSeleccionado != -1) {
-            val imagenSeleccionada = items[indiceSeleccionado]
-        }
-
         val btnAgregar = findViewById<Button>(R.id.btnAgregar)
         btnAgregar.setOnClickListener{
+            val nombreLista = findViewById<EditText>(R.id.eTNameList).getText().toString()
 
+            if(nombreLista.isNotBlank()){
+                val buttonItem = ButtonItem(nombreLista, idSeleccionado)
+                val db = DBListButton(this).writableDatabase
+                val values = ContentValues().apply {
+                    put("list_name", buttonItem.text)
+                    put("image_id", buttonItem.imageResId)
+                }
+                db.insert("btnList", null, values)
+                db.close()
 
-            val intent = Intent(this, AddList::class.java)
-            startActivity(intent)
+                val intent = Intent(this, MainMenu::class.java)
+                startActivity(intent)
+            }else{
+                Toast.makeText(this, "Completar todos los campos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
 
+data class ButtonItem(val text: String, val imageResId: Int)
 
 

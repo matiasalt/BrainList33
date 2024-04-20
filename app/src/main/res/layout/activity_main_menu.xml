@@ -14,6 +14,7 @@
         android:fontFamily="@font/poppins_extrabold"
         android:text="@string/brainlist"
         android:textSize="40sp"
+        android:textColor="@color/black"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,27 +22,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045" />
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="520dp"
-        android:background="@color/black"
-        android:contentDescription="@string/scrollbtn"
 
+    <ScrollView
+        android:id="@+id/sVBtn"
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:contentDescription="@string/scrollbtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView0"
-        app:layout_constraintVertical_bias="0.144">
+        app:layout_constraintVertical_bias="0.114">
 
-        <LinearLayout
-            android:id="@+id/lLBotonera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
     </ScrollView>
-
 
     <ImageButton
         android:id="@+id/btnAdd"
@@ -56,7 +50,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:layout_constraintTop_toBottomOf="@+id/sVBtn"
         app:layout_constraintVertical_bias="0.545" />
 
 
