@@ -2,18 +2,14 @@ package com.matiasd.brainlist3
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -44,19 +40,12 @@ class MainMenu : AppCompatActivity() {
         val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
 
         btnAdd.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-
-            val v = LayoutInflater.from(this).inflate(R.layout.add_list, null)
-            builder.setView(v)
-            builder.setPositiveButton("Registro") {_,_->
-                    OnClickListener{
-
-                    }
-                }
-            builder.create().show()
+            val intent = Intent(this, AddList::class.java)
+            startActivity(intent)
             }
         }
 
 
 }
+
 

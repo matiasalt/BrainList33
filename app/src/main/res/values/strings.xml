@@ -21,4 +21,6 @@
     <string name="nombre">Nombre</string>
     <string name="namelist">nameList</string>
     <string name="scrollbtn">scrollbtn</string>
+    <string name="elegir_imagen">Elegir imagen:</string>
+    <string name="agregar">Agregar</string>
 </resources>

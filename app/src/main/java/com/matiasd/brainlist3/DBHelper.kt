@@ -45,19 +45,6 @@ class DBHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null,
         return userExists
     }
 
-    fun userAlreadyExists(email: String):Boolean{
-        val db = writableDatabase
-        val cursor = db.rawQuery("SELECT * FROM userinfo WHERE email= $email", null)
-        println(cursor.moveToFirst())
-        return if (cursor.moveToFirst()){
-            cursor.close()
-            true
-        }else{
-            cursor.close()
-            false
-        }
-    }
-
     fun dropTable(){
         val db = writableDatabase
         val dropTableQuerry= "DROP TABLE IF EXISTS userinfo"
