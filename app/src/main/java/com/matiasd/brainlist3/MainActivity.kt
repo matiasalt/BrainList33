@@ -13,6 +13,7 @@ import android.widget.Toast
 class   MainActivity : AppCompatActivity() {
     private lateinit var userDBHelper: DBHelper
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
