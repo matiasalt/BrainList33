@@ -36,7 +36,7 @@ class AddList : AppCompatActivity() {
                 val imageView = ImageView(context)
                 imageView.setImageResource(getItem(position) ?: 0)
                 imageView.adjustViewBounds = true
-                imageView.layoutParams = AbsListView.LayoutParams(200, 200)
+                imageView.layoutParams = AbsListView.LayoutParams(250, 250)
                 return imageView
             }
 
