@@ -30,8 +30,8 @@
         android:layout_marginTop="64dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/nombre_de_la_lista"
-        android:textSize="24sp"
         android:textColor="@color/text"
+        android:textSize="24sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.218"
@@ -63,20 +63,20 @@
 
     <TextView
         android:id="@+id/tVIconName"
-        android:layout_width="185dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="181dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/elegir_imagen"
         android:textColor="@color/text"
         android:textSize="24sp"
 
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/icon_spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintHorizontal_bias="0.173"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eTNameList"
-        app:layout_constraintVertical_bias="0.117" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/icon_spinner"
@@ -86,10 +86,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eTNameList"
-        app:layout_constraintVertical_bias="0.304" />
+        app:layout_constraintVertical_bias="0.292" />
 
     <Button
         android:id="@+id/btnAgregar"
