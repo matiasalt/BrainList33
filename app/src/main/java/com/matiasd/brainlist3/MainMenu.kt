@@ -103,9 +103,16 @@ class MainMenu : AppCompatActivity() {
 
             horizontalLayout.layoutParams = layoutParams
 
+            // Seleccionar color de la lista para el horizontalLayout
 
+            val colorInt = Color.parseColor(item.third)
             // Aplicar el fondo con bordes redondeados al horizontalLayout
-            horizontalLayout.background = ContextCompat.getDrawable(this, R.drawable.button_color)
+            val randomColorDrawable = GradientDrawable().apply {
+                setColor(colorInt)
+                cornerRadius = 25F
+            }
+            horizontalLayout.background = randomColorDrawable
+
 
             linearLayout.addView(horizontalLayout)
         }

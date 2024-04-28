@@ -42,7 +42,7 @@ class AddList : AppCompatActivity() {
                 val imageView = ImageView(context)
                 imageView.setImageResource(getItem(position) ?: 0)
                 imageView.adjustViewBounds = true
-                imageView.layoutParams = AbsListView.LayoutParams(200, 200)
+                imageView.layoutParams = AbsListView.LayoutParams(250, 250)
                 return imageView
             }
 
@@ -78,16 +78,19 @@ class AddList : AppCompatActivity() {
             }
         }
 
+        val colors = listOf("#FF99C8", "#FAF3DD", "#B8F2E6", "#AED9E0", "#5E6472")
+        val colorSelected = colors.random()
         val btnAgregar = findViewById<Button>(R.id.btnAgregar)
         btnAgregar.setOnClickListener{
             val nombreLista = findViewById<EditText>(R.id.eTNameList).getText().toString()
 
             if(nombreLista.isNotBlank()){
-                val buttonItem = ButtonItem(nombreLista, idSeleccionado)
+                val buttonItem = ButtonItem(nombreLista, idSeleccionado, colorSelected)
                 val db = DBListButton(this).writableDatabase
                 val values = ContentValues().apply {
                     put("list_name", buttonItem.text)
                     put("image_id", buttonItem.imageResId)
+                    put("list_color", buttonItem.color)
                 }
                 db.insert("btnList", null, values)
                 db.close()
@@ -101,6 +104,6 @@ class AddList : AppCompatActivity() {
     }
 }
 
-data class ButtonItem(val text: String, val imageResId: Int)
+data class ButtonItem(val text: String, val imageResId: Int, val color: String)
 
 

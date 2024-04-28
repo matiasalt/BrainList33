@@ -12,11 +12,13 @@ class DBListButton(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         private const val TABLE_NAME = "btnList"
         private const val COLUMN_NAME = "list_name"
         private const val COLUMN_ID = "image_id"
+        private const val COLUMN_COLOR = "list_color"
     }
     override fun onCreate(db: SQLiteDatabase?) {
         val createTableQuerry = "CREATE TABLE $TABLE_NAME (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$COLUMN_NAME TEXT, " +
-                "$COLUMN_ID INT)"
+                "$COLUMN_ID INT, " +
+                "$COLUMN_COLOR TEXT)"
         db?.execSQL(createTableQuerry)
     }
 
@@ -24,17 +26,18 @@ class DBListButton(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         TODO("Not yet implemented")
     }
     @SuppressLint("Range")
-    fun getDataFromSQLite(): List<Pair<String, Int>> {
-        val dataList = mutableListOf<Pair<String, Int>>()
+    fun getDataFromSQLite(): List<Triple<String, Int, String>> {
+        val dataList = mutableListOf<Triple<String, Int, String>>()
         val db = this.readableDatabase
-        val query = "SELECT $COLUMN_NAME, $COLUMN_ID FROM $TABLE_NAME"
+        val query = "SELECT $COLUMN_NAME, $COLUMN_ID, $COLUMN_COLOR FROM $TABLE_NAME"
         val cursor= db.rawQuery(query, null)
 
         if (cursor.moveToFirst()) {
             do {
                 val name = cursor.getString(cursor.getColumnIndex(COLUMN_NAME))
                 val id = cursor.getInt(cursor.getColumnIndex(COLUMN_ID))
-                dataList.add(Pair(name, id))
+                val color = cursor.getString(cursor.getColumnIndex(COLUMN_COLOR))
+                dataList.add(Triple(name, id, color))
             } while (cursor.moveToNext())
         }
 
