@@ -26,6 +26,7 @@ import androidx.core.view.marginStart
 import java.lang.Math.random
 import kotlin.random.Random
 
+@Suppress("DEPRECATION")
 class MainMenu : AppCompatActivity() {
     private lateinit var listdb: DBListButton
     @SuppressLint("SetTextI18n")
@@ -66,7 +67,7 @@ class MainMenu : AppCompatActivity() {
             // Aplicar la fuente al Button
             button.typeface = customFont
             button.setBackgroundColor(Color.TRANSPARENT)
-            button.setPadding(25,25,0,0)
+            button.setPadding(25,25,0,0) //Mover texto
 
             val image = ImageButton(this)
             image.setImageResource(item.second)
@@ -83,6 +84,8 @@ class MainMenu : AppCompatActivity() {
             button.setOnClickListener {
                 // Iniciar la actividad deseada aquí
                 val intent = Intent(this, Lists::class.java)
+                // Adjuntar el valor de item.first como un extra al Intent
+                intent.putExtra("nombreLista", item.first)
                 startActivity(intent)
             }
 
@@ -90,6 +93,8 @@ class MainMenu : AppCompatActivity() {
             image.setOnClickListener {
                 // Iniciar la actividad deseada aquí
                 val intent = Intent(this, Lists::class.java)
+                // Adjuntar el valor de item.first como un extra al Intent
+                intent.putExtra("nombreLista", item.first)
                 startActivity(intent)
             }
 
@@ -125,7 +130,15 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, AddList::class.java)
             startActivity(intent)
             }
-        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
+    }
 }
 
 

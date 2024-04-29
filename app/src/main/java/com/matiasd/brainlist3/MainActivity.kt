@@ -13,6 +13,7 @@ import android.widget.Toast
 class   MainActivity : AppCompatActivity() {
     private lateinit var userDBHelper: DBHelper
     private lateinit var listdb: DBListButton
+    private lateinit var listitemdb: DBLists
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
@@ -26,6 +27,7 @@ class   MainActivity : AppCompatActivity() {
 
         userDBHelper = DBHelper(this)
         listdb = DBListButton(this)
+        listitemdb = DBLists(this)
 
         val buttonlog = findViewById<Button>(R.id.btnLogin)
         buttonlog.setOnClickListener {
@@ -34,6 +36,7 @@ class   MainActivity : AppCompatActivity() {
 
             if(name=="admin"){
                 if(password=="admin"){
+                    listitemdb.dropTable()
                     listdb.dropTable()
                     userDBHelper.dropTable()
                     Toast.makeText(this, "Base de datos borrada", Toast.LENGTH_SHORT).show()

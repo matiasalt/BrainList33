@@ -23,4 +23,7 @@
     <string name="scrollbtn">scrollbtn</string>
     <string name="elegir_imagen">Elegir imagen:</string>
     <string name="agregar">Agregar</string>
+    <string name="agregar_item_a_la_lista">Agregar item a la lista</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="t_tulo">Título</string>
 </resources>

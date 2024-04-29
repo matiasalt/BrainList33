@@ -8,7 +8,7 @@
     tools:context=".Lists">
 
     <TextView
-        android:id="@+id/textView0"
+        android:id="@+id/tVTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_extrabold"
@@ -21,5 +21,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.045" />
+
+    <ScrollView
+        android:id="@+id/sVItem"
+        android:layout_width="350dp"
+        android:layout_height="650dp"
+        android:contentDescription="@string/scrollbtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tVTitle"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/lLItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/btnAddItem"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_add"
+        android:contentDescription="@string/add_btn"
+        android:src="@drawable/add_icon"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tVTitle"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

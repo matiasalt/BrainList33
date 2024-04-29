@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 
+@Suppress("DEPRECATION")
 class Registrar : AppCompatActivity() {
     private lateinit var userDBHelper: DBHelper
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,5 +40,13 @@ class Registrar : AppCompatActivity() {
                 Toast.makeText(this, "Completar todos los campos", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
     }
 }

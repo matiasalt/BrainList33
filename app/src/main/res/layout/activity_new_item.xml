@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewItem">
+
+    <TextView
+        android:id="@+id/tVTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="@string/agregar_item_a_la_lista"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.078" />
+
+    <TextView
+        android:id="@+id/tVItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/t_tulo"
+        android:textSize="20sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/eTItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tVTitle"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/eTItem"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:autofillHints="name"
+        android:background="@drawable/textview"
+        android:hint="@string/t_tulo"
+        android:inputType="text"
+        android:maxLength="20"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/black"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.236"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tVTitle"
+        app:layout_constraintVertical_bias="0.114"
+
+        tools:ignore="labelFor" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="@string/descripci_n"
+        android:textSize="20sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/eTDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eTItem"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/eTDescription"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:autofillHints="name"
+        android:background="@drawable/textview"
+        android:hint="@string/descripci_n"
+        android:inputType="textMultiLine"
+        android:maxLength="200"
+        android:maxLines="3"
+        android:singleLine="false"
+        android:textColor="@color/black"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tVTitle"
+        app:layout_constraintVertical_bias="0.294"
+
+        tools:ignore="labelFor" />
+
+    <Button
+        android:id="@+id/btnAgregar"
+        android:layout_width="185dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_rounded"
+        android:text="@string/agregar"
+        android:textColor="@color/white"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.882" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 
+@Suppress("DEPRECATION")
 class AddList : AppCompatActivity() {
     private var idSeleccionado = 1
 
@@ -102,8 +103,15 @@ class AddList : AppCompatActivity() {
             }
         }
     }
-}
 
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainMenu::class.java)
+        startActivity(intent)
+        finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
+    }
+}
 data class ButtonItem(val text: String, val imageResId: Int, val color: String)
 
 
