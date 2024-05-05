@@ -63,11 +63,11 @@ class MainMenu : AppCompatActivity() {
             button.setTextSize(25f)
             button.setTextColor(Color.BLACK)
             // Cargar la fuente personalizada
-            val customFont = ResourcesCompat.getFont(this, R.font.poppins_light)
+            val customFont = ResourcesCompat.getFont(this, R.font.poppins_regular)
             // Aplicar la fuente al Button
             button.typeface = customFont
             button.setBackgroundColor(Color.TRANSPARENT)
-            button.setPadding(25,25,0,0) //Mover texto
+            button.setPadding(45,25,0,0) //Mover texto
 
             val image = ImageButton(this)
             image.setImageResource(item.second)

@@ -13,6 +13,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.view.View
 
 @Suppress("NAME_SHADOWING", "DEPRECATION")
 class Lists : AppCompatActivity() {
@@ -83,6 +84,7 @@ class Lists : AppCompatActivity() {
             intent.putExtra("nombreLista", nombreLista)
             startActivity(intent)
         }
+        findViewById<View>(android.R.id.content).setBackgroundResource(R.drawable.listas)
     }
 
     @Deprecated("Deprecated in Java")

@@ -79,7 +79,7 @@ class AddList : AppCompatActivity() {
             }
         }
 
-        val colors = listOf("#FF99C8", "#FAF3DD", "#B8F2E6", "#AED9E0", "#5E6472")
+        val colors = listOf("#FF99C8", "#FAF3DD", "#B8F2E6", "#AED9E0", "#5E6472", "#cbc8b5", "#bda0a2", "#ffe6db", "#d1eaee", "#efb0a9")
         val colorSelected = colors.random()
         val btnAgregar = findViewById<Button>(R.id.btnAgregar)
         btnAgregar.setOnClickListener{
