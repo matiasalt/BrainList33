@@ -10,12 +10,14 @@ class DBLists(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
         private const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "ListsDB"
         private const val TABLE_NAME = "listsDB"
-        private const val COLUMN_NAME = "list_name"
+        private const val COLUMN_USERID = "user_id"
+        private const val COLUMN_NAME = "name_list"
         private const val COLUMN_ITEM = "item_title"
         private const val COLUMN_DESCRIPTION = "description"
     }
     override fun onCreate(db: SQLiteDatabase?) {
         val createTableQuerry = "CREATE TABLE $TABLE_NAME (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "$COLUMN_USERID TEXT, " +
                 "$COLUMN_NAME TEXT, " +
                 "$COLUMN_ITEM TEXT, " +
                 "$COLUMN_DESCRIPTION TEXT)"
@@ -26,10 +28,10 @@ class DBLists(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
 
     }
     @SuppressLint("Range")
-    fun getDataFromSQLite(nameList: String): List<Pair<String, String>> {
+    fun getDataFromSQLite(userId: String, nameList: String): List<Pair<String, String>> {
         val dataList = mutableListOf<Pair<String, String>>()
         val db = this.readableDatabase
-        val query = "SELECT $COLUMN_ITEM, $COLUMN_DESCRIPTION FROM $TABLE_NAME WHERE $COLUMN_NAME = '$nameList'"
+        val query = "SELECT $COLUMN_ITEM, $COLUMN_DESCRIPTION FROM $TABLE_NAME WHERE $COLUMN_USERID = '$userId' AND $COLUMN_NAME = '$nameList'"
         val cursor= db.rawQuery(query, null)
 
         if (cursor.moveToFirst()) {

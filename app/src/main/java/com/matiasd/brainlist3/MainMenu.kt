@@ -23,11 +23,13 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.marginStart
+import com.google.firebase.auth.FirebaseAuth
 import java.lang.Math.random
 import kotlin.random.Random
 
 @Suppress("DEPRECATION")
 class MainMenu : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
     private lateinit var listdb: DBListButton
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +42,13 @@ class MainMenu : AppCompatActivity() {
             insets
         }
 
+        auth = FirebaseAuth.getInstance()
+        val currentUserId = auth.currentUser
+        val userId = currentUserId?.uid.toString()
+
         // Suponiendo que tienes una lista de objetos con nombre de imagen y ID de imagen obtenidos de la base de datos
         listdb = DBListButton(this)
-        val dataList = listdb.getDataFromSQLite() // Función que obtiene los datos de la base de datos
+        val dataList = listdb.getDataFromSQLite(userId) // Función que obtiene los datos de la base de datos
 
         val scrollView = findViewById<ScrollView>(R.id.sVBtn) // Reference to your ScrollView
 
@@ -54,7 +60,7 @@ class MainMenu : AppCompatActivity() {
             horizontalLayout.orientation = LinearLayout.HORIZONTAL
 
             val button = Button(this)
-            button.text = item.first
+            button.text = item.second
             button.gravity = Gravity.START // Alinear el texto verticalmente en el centro
             button.layoutParams = LinearLayout.LayoutParams(
                 580,
@@ -70,7 +76,7 @@ class MainMenu : AppCompatActivity() {
             button.setPadding(45,70,0,0) //Mover texto
 
             val image = ImageButton(this)
-            image.setImageResource(item.second)
+            image.setImageResource(item.third)
             image.setBackgroundColor(Color.TRANSPARENT)
             val imageLayoutParams = LinearLayout.LayoutParams(
                 300,
@@ -85,7 +91,7 @@ class MainMenu : AppCompatActivity() {
                 // Iniciar la actividad deseada aquí
                 val intent = Intent(this, Lists::class.java)
                 // Adjuntar el valor de item.first como un extra al Intent
-                intent.putExtra("nombreLista", item.first)
+                intent.putExtra("nombreLista", item.second)
                 startActivity(intent)
             }
 
@@ -94,7 +100,7 @@ class MainMenu : AppCompatActivity() {
                 // Iniciar la actividad deseada aquí
                 val intent = Intent(this, Lists::class.java)
                 // Adjuntar el valor de item.first como un extra al Intent
-                intent.putExtra("nombreLista", item.first)
+                intent.putExtra("nombreLista", item.second)
                 startActivity(intent)
             }
 
@@ -110,7 +116,7 @@ class MainMenu : AppCompatActivity() {
 
             // Seleccionar color de la lista para el horizontalLayout
 
-            val colorInt = Color.parseColor(item.third)
+            val colorInt = Color.parseColor(item.fourth)
             // Aplicar el fondo con bordes redondeados al horizontalLayout
             val randomColorDrawable = GradientDrawable().apply {
                 setColor(colorInt)

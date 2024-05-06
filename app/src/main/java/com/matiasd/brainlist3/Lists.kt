@@ -14,9 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.view.View
+import com.google.firebase.auth.FirebaseAuth
 
 @Suppress("NAME_SHADOWING", "DEPRECATION")
 class Lists : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
     private lateinit var listdb: DBLists
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +30,11 @@ class Lists : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        auth = FirebaseAuth.getInstance()
+        val currentUserId = auth.currentUser
+        val userId = currentUserId?.uid.toString()
+
         // Recuperar el valor de item.first del Intent
         val nombreLista = intent.getStringExtra("nombreLista").toString()
 
@@ -37,7 +44,7 @@ class Lists : AppCompatActivity() {
         textView.text = nombreLista
 
         listdb = DBLists(this)
-        val dataList = listdb.getDataFromSQLite(nombreLista) // Función que obtiene los datos de la base de datos
+        val dataList = listdb.getDataFromSQLite(userId, nombreLista) // Función que obtiene los datos de la base de datos
 
         val scrollView = findViewById<ScrollView>(R.id.sVItem) // Usa el ScrollView existente desde el layout XML
         val linearLayout = scrollView.findViewById<LinearLayout>(R.id.lLItems) // Obtén el LinearLayout dentro del ScrollView

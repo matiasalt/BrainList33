@@ -10,9 +10,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 
 @Suppress("DEPRECATION")
 class NewItem : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,6 +25,9 @@ class NewItem : AppCompatActivity() {
             insets
         }
 
+        auth = FirebaseAuth.getInstance()
+        val currentUserId = auth.currentUser
+        val userId = currentUserId?.uid.toString()
         val nombreLista = intent.getStringExtra("nombreLista").toString()
 
         val btnAgregar = findViewById<Button>(R.id.btnAgregar)
@@ -31,10 +36,11 @@ class NewItem : AppCompatActivity() {
             val description = findViewById<EditText>(R.id.eTDescription).getText().toString()
             if(itemTitle.isNotBlank()){
                 if(description.isNotBlank()){
-                    val itemData = ItemData(nombreLista, itemTitle, description)
+                    val itemData = ItemData(userId, nombreLista, itemTitle, description)
                     val db = DBLists(this).writableDatabase
                     val values = ContentValues().apply {
-                        put("list_name", itemData.nameList)
+                        put("user_id", itemData.userId)
+                        put("name_list", itemData.nameList)
                         put("item_title", itemData.textTitle)
                         put("description", itemData.description)
                     }
@@ -46,10 +52,11 @@ class NewItem : AppCompatActivity() {
                     startActivity(intent)
                 }else{
                     val emptyDescription = ""
-                    val itemData = ItemData(nombreLista, itemTitle, emptyDescription)
+                    val itemData = ItemData(userId, nombreLista, itemTitle, emptyDescription)
                     val db = DBLists(this).writableDatabase
                     val values = ContentValues().apply {
-                        put("list_name", itemData.nameList)
+                        put("user_id", itemData.userId)
+                        put("name_list", itemData.nameList)
                         put("item_title", itemData.textTitle)
                         put("description", itemData.description)
                     }
@@ -73,7 +80,7 @@ class NewItem : AppCompatActivity() {
         val intent = Intent(this, Lists::class.java)
         intent.putExtra("nombreLista", nombreLista)
         startActivity(intent)
-        finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
+        finish()
     }
 }
-data class ItemData(val nameList: String, val textTitle: String, val description: String)
+data class ItemData(val userId: String, val nameList: String, val textTitle: String, val description: String)

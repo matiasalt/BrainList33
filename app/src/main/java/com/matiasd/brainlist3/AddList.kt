@@ -19,12 +19,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
 
 
 @Suppress("DEPRECATION")
 class AddList : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
     private var idSeleccionado = 1
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -35,6 +36,10 @@ class AddList : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        auth = FirebaseAuth.getInstance()
+        val currentUserId = auth.currentUser
+        val userId = currentUserId?.uid.toString()
 
         val spinner: Spinner = findViewById(R.id.icon_spinner)
         val items = listOf(R.drawable.casa_icon, R.drawable.fiesta_icon, R.drawable.trabajo_icon)
@@ -86,9 +91,10 @@ class AddList : AppCompatActivity() {
             val nombreLista = findViewById<EditText>(R.id.eTNameList).getText().toString()
 
             if(nombreLista.isNotBlank()){
-                val buttonItem = ButtonItem(nombreLista, idSeleccionado, colorSelected)
+                val buttonItem = ButtonItem(userId, nombreLista, idSeleccionado, colorSelected)
                 val db = DBListButton(this).writableDatabase
                 val values = ContentValues().apply {
+                    put("user_id", buttonItem.userId)
                     put("list_name", buttonItem.text)
                     put("image_id", buttonItem.imageResId)
                     put("list_color", buttonItem.color)
@@ -112,6 +118,6 @@ class AddList : AppCompatActivity() {
         finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
     }
 }
-data class ButtonItem(val text: String, val imageResId: Int, val color: String)
+data class ButtonItem(val userId: String, val text: String, val imageResId: Int, val color: String)
 
 
