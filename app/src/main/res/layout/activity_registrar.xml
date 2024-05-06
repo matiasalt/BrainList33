@@ -25,45 +25,45 @@
         app:layout_constraintVertical_bias="0.068" />
 
     <TextView
-        android:id="@+id/tViewRegistro2"
+        android:id="@+id/tVEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/usuario"
-        android:textSize="20sp"
+        android:text="@string/email"
         android:textColor="@color/text"
+        android:textSize="20sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.256" />
+        app:layout_constraintVertical_bias="0.268" />
 
     <TextView
-        android:id="@+id/tViewRegistro4"
+        android:id="@+id/tVPassConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/email"
-        android:textSize="20sp"
+        android:text="@string/confirmar_contrase_a"
         android:textColor="@color/text"
+        android:textSize="20sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintHorizontal_bias="0.177"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618" />
+        app:layout_constraintVertical_bias="0.631" />
 
     <EditText
-        android:id="@+id/eTmailRegitro3"
+        android:id="@+id/eTPassConfirm"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:autofillHints="username"
+        android:autofillHints="password"
         android:background="@drawable/textview"
         android:contentDescription="@string/empty"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:maxLines="1"
         android:singleLine="true"
         android:textColor="@color/black"
@@ -77,7 +77,7 @@
         tools:ignore="labelFor" />
 
     <EditText
-        android:id="@+id/eTpassRegistro1"
+        android:id="@+id/eTPass"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:autofillHints="password"
@@ -111,29 +111,29 @@
         app:layout_constraintVertical_bias="0.804" />
 
     <TextView
-        android:id="@+id/tViewReistro3"
+        android:id="@+id/tVPass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/contrase_a"
-        android:textSize="20sp"
         android:textColor="@color/text"
+        android:textSize="20sp"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.439" />
+        app:layout_constraintVertical_bias="0.449" />
 
     <EditText
-        android:id="@+id/eTuserRegitro1"
+        android:id="@+id/eTEmail"
         android:layout_width="350dp"
         android:layout_height="50dp"
-        android:autofillHints="username"
+        android:autofillHints="emailAddress"
         android:background="@drawable/textview"
         android:contentDescription="@string/empty"
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:maxLines="1"
         android:singleLine="true"
         android:textColor="@color/black"

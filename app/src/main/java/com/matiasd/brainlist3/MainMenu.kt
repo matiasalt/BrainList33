@@ -135,7 +135,7 @@ class MainMenu : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         super.onBackPressed()
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, Login::class.java)
         startActivity(intent)
         finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
     }
