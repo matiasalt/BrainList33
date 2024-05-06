@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/item"
     tools:context=".NewItem">
 
     <TextView
@@ -77,8 +78,8 @@
 
     <EditText
         android:id="@+id/eTDescription"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="302dp"
+        android:layout_height="64dp"
         android:autofillHints="name"
         android:background="@drawable/textview"
         android:hint="@string/descripci_n"

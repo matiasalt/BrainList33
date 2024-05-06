@@ -84,6 +84,7 @@ class Lists : AppCompatActivity() {
             intent.putExtra("nombreLista", nombreLista)
             startActivity(intent)
         }
+        //background
         findViewById<View>(android.R.id.content).setBackgroundResource(R.drawable.listas)
     }
 
