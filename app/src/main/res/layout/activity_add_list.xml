@@ -5,7 +5,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/add_list"
     tools:context=".AddList">
+
 
     <TextView
         android:id="@+id/tVName"
@@ -15,6 +17,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/agregar_nueva_lista"
         android:textSize="25sp"
+        android:textColor="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +30,7 @@
         android:layout_marginTop="52dp"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/nombre_de_la_lista"
+        android:textColor="@color/text"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.213"
@@ -64,6 +68,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="@string/elegir_imagen"
         android:textSize="20sp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.176"
