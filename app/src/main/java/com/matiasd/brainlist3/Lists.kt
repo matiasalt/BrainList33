@@ -78,6 +78,7 @@ class Lists : AppCompatActivity() {
             textView.text = item.first
             textView.textSize = 30f
             textView.gravity = Gravity.CENTER_VERTICAL
+            textView.setTextColor(Color.BLACK)
 
             // Configurar los parámetros de diseño para que el TextView ocupe el resto del espacio disponible
             val weightParams = LinearLayout.LayoutParams(

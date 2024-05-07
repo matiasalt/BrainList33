@@ -15,6 +15,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="@string/agregar_item_a_la_lista"
         android:textSize="25sp"
+        android:textColor="@color/text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -27,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:textColor="@color/text"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/t_tulo"
         android:textSize="20sp"
@@ -68,6 +70,7 @@
         android:fontFamily="@font/poppins_medium"
         android:text="@string/descripci_n"
         android:textSize="20sp"
+        android:textColor="@color/text"
 
         app:layout_constraintBottom_toTopOf="@+id/eTDescription"
         app:layout_constraintEnd_toEndOf="parent"
