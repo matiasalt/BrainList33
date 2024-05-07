@@ -15,6 +15,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
+import android.content.res.ColorStateList
+import android.graphics.Color
+
 
 @Suppress("NAME_SHADOWING", "DEPRECATION")
 class Lists : AppCompatActivity() {
@@ -62,6 +65,14 @@ class Lists : AppCompatActivity() {
             checkBox.gravity = Gravity.CENTER_VERTICAL
 
             checkBox.layoutParams = params // Establecer el ancho de CheckBox como WRAP_CONTENT
+
+            //COLOR DEL CHECKBOX
+
+            val colorStateList = ColorStateList(
+                arrayOf(intArrayOf(android.R.attr.state_checked), intArrayOf(-android.R.attr.state_checked)),
+                intArrayOf(Color.RED, Color.GREEN) // Cambia Color.RED y Color.GREEN por los colores deseados
+            )
+            checkBox.buttonTintList = colorStateList
 
             val textView = TextView(this)
             textView.text = item.first
