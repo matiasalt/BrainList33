@@ -5,10 +5,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -16,21 +18,30 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.Space
 import android.widget.TextView
+import android.widget.Toolbar
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.marginStart
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.lang.Math.random
 import kotlin.random.Random
 
 @Suppress("DEPRECATION")
-class MainMenu : AppCompatActivity() {
+class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var listdb: DBListButton
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +52,27 @@ class MainMenu : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //
+        //Menu despegable
+        //
+
+        val drawerLayout = findViewById<DrawerLayout>(R.id.main)
+        val navView = findViewById<NavigationView>(R.id.navView)
+        val toolBar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+
+        setSupportActionBar(toolBar)
+        navView.bringToFront()
+
+        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener(this)
+        toolBar.setNavigationIcon(R.drawable.menu_icon)
+
+        //
+        //Crear botones de listas
+        //
 
         auth = FirebaseAuth.getInstance()
         val currentUserId = auth.currentUser
@@ -140,10 +172,32 @@ class MainMenu : AppCompatActivity() {
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        super.onBackPressed()
-        val intent = Intent(this, Login::class.java)
-        startActivity(intent)
-        finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
+        val drawerLayout = findViewById<DrawerLayout>(R.id.main)
+        if(drawerLayout.isDrawerOpen(Gravity.START)){
+            drawerLayout.closeDrawer(Gravity.START)
+        }else{
+            super.onBackPressed()
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+            finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
+        }
+    }
+
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        val drawerLayout = findViewById<DrawerLayout>(R.id.main)
+        when (menuItem.itemId){
+            R.id.inicio -> {
+                val intent = Intent(this, MainMenu::class.java)
+                startActivity(intent)
+            }
+            R.id.logout -> {
+                Firebase.auth.signOut()
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+            }
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 }
 
