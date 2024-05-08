@@ -69,6 +69,7 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
         toolBar.setNavigationIcon(R.drawable.menu_icon)
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
 
         //
         //Crear botones de listas
