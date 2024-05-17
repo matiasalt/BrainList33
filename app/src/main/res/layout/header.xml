@@ -3,13 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    android:background="@color/purple_700"
+    android:background="@drawable/desplegable"
     android:gravity="bottom"
-    android:padding="20dp">
+    android:padding="20dp"
+    >
 
     <ImageView
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:src="@drawable/color5"/>
+        android:src="@drawable/brain_list_icon"/>
 
 </LinearLayout>
