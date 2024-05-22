@@ -10,8 +10,8 @@
 
     <ImageView
         
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
         android:src="@drawable/brain_list_icon"/>
 
 </LinearLayout>
