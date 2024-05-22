@@ -17,10 +17,17 @@ import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 @Suppress("NAME_SHADOWING", "DEPRECATION")
-class Lists : AppCompatActivity() {
+class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var listdb: DBLists
     @SuppressLint("MissingInflatedId")
@@ -28,11 +35,31 @@ class Lists : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_lists)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.lists)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        //
+        //Menu despegable
+        //
+
+        val drawerLayout = findViewById<DrawerLayout>(R.id.lists)
+        val navView = findViewById<NavigationView>(R.id.navView)
+        val toolBar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+
+        setSupportActionBar(toolBar)
+        navView.bringToFront()
+
+        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolBar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        navView.setNavigationItemSelectedListener(this)
+        toolBar.setNavigationIcon(R.drawable.menu_icon)
+        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+
+        //Items Lista
 
         auth = FirebaseAuth.getInstance()
         val currentUserId = auth.currentUser
@@ -113,5 +140,22 @@ class Lists : AppCompatActivity() {
         val intent = Intent(this, MainMenu::class.java)
         startActivity(intent)
         finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
+    }
+
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
+        val drawerLayout = findViewById<DrawerLayout>(R.id.lists)
+        when (menuItem.itemId){
+            R.id.inicio -> {
+                val intent = Intent(this, MainMenu::class.java)
+                startActivity(intent)
+            }
+            R.id.logout -> {
+                Firebase.auth.signOut()
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+            }
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 }

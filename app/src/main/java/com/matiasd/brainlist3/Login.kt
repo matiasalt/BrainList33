@@ -9,12 +9,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.util.Log
+import android.view.Gravity
 import android.widget.EditText
 import android.widget.Toast
+import androidx.drawerlayout.widget.DrawerLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+@Suppress("DEPRECATION")
 class   Login : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var listdb: DBListButton
@@ -65,6 +68,14 @@ class   Login : AppCompatActivity() {
         if (currentUser != null) {
             Log.d(ContentValues.TAG, "currentUser: not null")
         }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, Login::class.java)
+        startActivity(intent)
+        finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
     }
 
     private fun loginUser(email: String, password: String){
