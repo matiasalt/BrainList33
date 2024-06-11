@@ -41,6 +41,7 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
             insets
         }
 
+
         //
         //Menu despegable
         //
@@ -57,7 +58,7 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
         toolBar.setNavigationIcon(R.drawable.menu_icon)
-        getSupportActionBar()?.setDisplayShowTitleEnabled(false)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         //Items Lista
 
@@ -115,6 +116,7 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
             )
             textView.layoutParams = weightParams
 
+
             // Agregar CheckBox y TextView al diseño horizontal
             horizontalLayout.addView(checkBox)
             horizontalLayout.addView(textView)
@@ -132,6 +134,8 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
         }
         //background
         findViewById<View>(android.R.id.content).setBackgroundResource(R.drawable.listas)
+
+
     }
 
     @Deprecated("Deprecated in Java")
