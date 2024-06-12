@@ -27,13 +27,7 @@ class DBLists(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
 
     }
-    //ELIMINAR BASE DE DATOS
-    fun deleteListFromSQLite(userId: String, nombreLista: String): Boolean {
-        val db = this.writableDatabase
-        val whereClause = "userId=? AND listName=?"
-        val whereArgs = arrayOf(userId, nombreLista)
-        return db.delete("lists_table", whereClause, whereArgs) > 0
-    }
+
     @SuppressLint("Range")
     fun getDataFromSQLite(userId: String, nameList: String): List<Pair<String, String>> {
         val dataList = mutableListOf<Pair<String, String>>()
