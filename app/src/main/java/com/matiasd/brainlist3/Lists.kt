@@ -41,7 +41,6 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
             insets
         }
 
-
         //
         //Menu despegable
         //
