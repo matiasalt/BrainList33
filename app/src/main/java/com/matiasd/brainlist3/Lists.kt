@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.view.View
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import android.content.res.ColorStateList
 import android.graphics.Color
@@ -25,11 +26,11 @@ import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-
 @Suppress("NAME_SHADOWING", "DEPRECATION")
 class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var listdb: DBLists
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +41,6 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        //
-        //Menu despegable
-        //
 
         val drawerLayout = findViewById<DrawerLayout>(R.id.lists)
         val navView = findViewById<NavigationView>(R.id.navView)
@@ -59,25 +56,20 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
         toolBar.setNavigationIcon(R.drawable.menu_icon)
         supportActionBar?.setDisplayShowTitleEnabled(false)
 
-        //Items Lista
-
         auth = FirebaseAuth.getInstance()
         val currentUserId = auth.currentUser
         val userId = currentUserId?.uid.toString()
 
-        // Recuperar el valor de item.first del Intent
         val nombreLista = intent.getStringExtra("nombreLista").toString()
 
-        // Usar el valor de itemFirst como sea necesario
-        // Por ejemplo, mostrarlo en un TextView
         val textView = findViewById<TextView>(R.id.tVTitle)
         textView.text = nombreLista
 
         listdb = DBLists(this)
-        val dataList = listdb.getDataFromSQLite(userId, nombreLista) // Función que obtiene los datos de la base de datos
+        val dataList = listdb.getDataFromSQLite(userId, nombreLista)
 
-        val scrollView = findViewById<ScrollView>(R.id.sVItem) // Usa el ScrollView existente desde el layout XML
-        val linearLayout = scrollView.findViewById<LinearLayout>(R.id.lLItems) // Obtén el LinearLayout dentro del ScrollView
+        val scrollView = findViewById<ScrollView>(R.id.sVItem)
+        val linearLayout = scrollView.findViewById<LinearLayout>(R.id.lLItems)
 
         for (item in dataList) {
             val horizontalLayout = LinearLayout(this)
@@ -90,14 +82,11 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
 
             val checkBox = CheckBox(this)
             checkBox.gravity = Gravity.CENTER_VERTICAL
-
-            checkBox.layoutParams = params // Establecer el ancho de CheckBox como WRAP_CONTENT
-
-            //COLOR DEL CHECKBOX
+            checkBox.layoutParams = params
 
             val colorStateList = ColorStateList(
                 arrayOf(intArrayOf(android.R.attr.state_checked), intArrayOf(-android.R.attr.state_checked)),
-                intArrayOf(Color.RED, Color.GREEN) // Cambia Color.RED y Color.GREEN por los colores deseados
+                intArrayOf(Color.RED, Color.GREEN)
             )
             checkBox.buttonTintList = colorStateList
 
@@ -107,7 +96,6 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
             textView.gravity = Gravity.CENTER_VERTICAL
             textView.setTextColor(Color.BLACK)
 
-            // Configurar los parámetros de diseño para que el TextView ocupe el resto del espacio disponible
             val weightParams = LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -115,26 +103,37 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
             )
             textView.layoutParams = weightParams
 
-
-            // Agregar CheckBox y TextView al diseño horizontal
             horizontalLayout.addView(checkBox)
             horizontalLayout.addView(textView)
 
-            // Agregar el diseño horizontal al diseño lineal principal
             linearLayout.addView(horizontalLayout)
         }
 
         val btnAdd = findViewById<ImageButton>(R.id.btnAddItem)
-
         btnAdd.setOnClickListener {
             val intent = Intent(this, NewItem::class.java)
             intent.putExtra("nombreLista", nombreLista)
             startActivity(intent)
         }
-        //background
+
+        // Añadir botón de eliminación
+        val btnDeleteList = findViewById<ImageButton>(R.id.imageButton5)
+        btnDeleteList.setOnClickListener {
+            deleteList(userId, nombreLista)
+        }
+
         findViewById<View>(android.R.id.content).setBackgroundResource(R.drawable.listas)
+    }
 
-
+    private fun deleteList(userId: String, nombreLista: String) {
+        val isDeleted = listdb.deleteListFromSQLite(userId, nombreLista)
+        if (isDeleted) {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+            finish()
+        } else {
+            Toast.makeText(this, "Error al eliminar la lista", Toast.LENGTH_SHORT).show()
+        }
     }
 
     @Deprecated("Deprecated in Java")
@@ -142,7 +141,7 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
         super.onBackPressed()
         val intent = Intent(this, MainMenu::class.java)
         startActivity(intent)
-        finish() // Opcional, dependiendo de si deseas conservar o no la pila de actividades
+        finish()
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
