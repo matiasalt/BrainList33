@@ -55,15 +55,22 @@ class DBLists(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null,
         db?.execSQL(dropTableQuerry)
         onCreate(db)
     }
-        //DELETE ITEMS
+
+    //DELETE ALL ITEMS
     fun deleteList(userId: String, nombreLista: String) {
         val db = this.writableDatabase
         db.delete(TABLE_NAME, "$COLUMN_USERID = ? AND $COLUMN_NAME = ?", arrayOf(userId, nombreLista))
         db.close()
     }
 
-        //DELETE ITEMS
-
+    //DELETE SINGLE ITEM
+    fun deleteSingleItem(userId: String, nombreLista: String, itemTitle: String) {
+        val db = this.writableDatabase
+        val selection = "$COLUMN_USERID = ? AND $COLUMN_NAME = ? AND $COLUMN_ITEM = ?"
+        val selectionArgs = arrayOf(userId, nombreLista, itemTitle)
+        db.delete(TABLE_NAME, selection, selectionArgs)
+        db.close()
+    }
 
 }
 

@@ -158,7 +158,7 @@ class MainMenu : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLis
             horizontalLayout.background = randomColorDrawable
 
 
-            linearLayout.addView(horizontalLayout)
+            linearLayout.addView(horizontalLayout, 0)
         }
 
         scrollView.addView(linearLayout)

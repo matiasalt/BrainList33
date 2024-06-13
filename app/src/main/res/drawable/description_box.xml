@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@android:color/transparent" />
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Color gris transparente (#80000000) -->
+            <solid android:color="#90efb0a9" />
+            <padding android:left="16dp" android:top="8dp" android:right="16dp" android:bottom="8dp" />
+        </shape>
+    </item>
+</layer-list>
+
