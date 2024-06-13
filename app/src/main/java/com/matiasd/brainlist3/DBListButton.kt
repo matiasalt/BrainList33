@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.google.android.material.shape.ShapePath.PathQuadOperation
 
 class DBListButton(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object {
@@ -60,7 +59,7 @@ class DBListButton(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
     //DELETE LIST
     fun deleteList(userId: String, nombreLista: String) {
         val db = this.writableDatabase
-        db.delete(DBListButton.TABLE_NAME, "${DBListButton.COLUMN_USERID} = ? AND ${DBListButton.COLUMN_NAME} = ?", arrayOf(userId, nombreLista))
+        db.delete(TABLE_NAME, "${COLUMN_USERID} = ? AND ${COLUMN_NAME} = ?", arrayOf(userId, nombreLista))
         db.close()
     }
     //DELETE LIST
