@@ -30,6 +30,8 @@ import com.google.firebase.ktx.Firebase
 class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var listdb: DBLists
+    private lateinit var listbuttondb: DBListButton
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +74,7 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
         // Por ejemplo, mostrarlo en un TextView
         val textView = findViewById<TextView>(R.id.tVTitle)
         textView.text = nombreLista
+
 
         listdb = DBLists(this)
         val dataList = listdb.getDataFromSQLite(userId, nombreLista) // Función que obtiene los datos de la base de datos
@@ -134,7 +137,21 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
         //background
         findViewById<View>(android.R.id.content).setBackgroundResource(R.drawable.listas)
 
-
+        listbuttondb = DBListButton(this)
+        //DELETE BOTON
+        val btnDeleteList = findViewById<ImageButton>(R.id.btnDeleteList)
+        btnDeleteList.setOnClickListener {
+            // Aquí puedes eliminar la lista usando su nombre (nombreLista)
+            // Por ejemplo, puedes llamar a una función que elimine la lista de tu base de datos
+            // Aquí asumimos que tienes una función en tu base de datos (listdb) que elimina la lista
+            listbuttondb.deleteList(userId, nombreLista)
+            listdb.deleteList(userId, nombreLista)
+            // Después de eliminar la lista, puedes regresar a la actividad anterior o realizar cualquier otra acción
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+            finish() // Termina esta actividad para evitar que el usuario vuelva a ella usando el botón "Atrás"
+        }
+        //DELETE BOTON
     }
 
     @Deprecated("Deprecated in Java")

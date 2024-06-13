@@ -57,6 +57,14 @@ class DBListButton(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         db?.execSQL(dropTableQuerry)
         onCreate(db)
     }
+    //DELETE LIST
+    fun deleteList(userId: String, nombreLista: String) {
+        val db = this.writableDatabase
+        db.delete(DBListButton.TABLE_NAME, "${DBListButton.COLUMN_USERID} = ? AND ${DBListButton.COLUMN_NAME} = ?", arrayOf(userId, nombreLista))
+        db.close()
+    }
+    //DELETE LIST
+
 }
 data class Tuple4<out A, out B, out C, out D>(
     val first: A,

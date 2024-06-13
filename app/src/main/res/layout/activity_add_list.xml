@@ -66,15 +66,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="@string/elegir_imagen"
-        android:textSize="20sp"
+        android:text="@string/elegir_categoria"
         android:textColor="@color/text"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eTNameList"
-        app:layout_constraintVertical_bias="0.022" />
+        app:layout_constraintVertical_bias="0.019" />
 
     <Spinner
         android:id="@+id/icon_spinner"
