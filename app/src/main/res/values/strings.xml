@@ -34,4 +34,5 @@
     <string name="perfil">Perfil</string>
     <string name="borrar" />
     <string name="elegir_categoria">Elegir Categoria:</string>
+    <string name="deletebtn">deletebtn</string>
 </resources>
