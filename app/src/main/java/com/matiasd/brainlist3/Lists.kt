@@ -145,13 +145,13 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
                 val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
                 builder.setTitle("Eliminar Item")
                 builder.setMessage("¿Desea eliminar este item?")
-                builder.setPositiveButton("Confirmar") { dialog, which ->
+                builder.setPositiveButton("Confirmar") { _, _ ->
                     // Acción al confirmar
                     listdb.deleteSingleItem(userId, nombreLista, item.first)
                     linearLayout.removeView(containerLayout)
                     Toast.makeText(this, "Item eliminado", Toast.LENGTH_SHORT).show()
                 }
-                builder.setNegativeButton("Cancelar") { dialog, which ->
+                builder.setNegativeButton("Cancelar") { dialog, _ ->
                     // Acción al cancelar
                     dialog.dismiss()
                 }
@@ -223,7 +223,7 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
             val builder = AlertDialog.Builder(this, R.style.CustomAlertDialog)
             builder.setTitle("Eliminar Lista")
             builder.setMessage("¿Desea eliminar esta lista?")
-            builder.setPositiveButton("Confirmar") { dialog, which ->
+            builder.setPositiveButton("Confirmar") { _, _ ->
                 // Acción al confirmar
                 listbuttondb.deleteList(userId, nombreLista)
                 listdb.deleteList(userId, nombreLista)
@@ -232,7 +232,7 @@ class Lists : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListen
                 startActivity(intent)
                 finish() // Termina esta actividad para evitar que el usuario vuelva a ella usando el botón "Atrás"
             }
-            builder.setNegativeButton("Cancelar") { dialog, which ->
+            builder.setNegativeButton("Cancelar") { dialog, _ ->
                 // Acción al cancelar
                 dialog.dismiss()
             }
